@@ -53,9 +53,18 @@
                 }
             }
             for (int i=len2;i<len1;i++){
-                result.append(Character.getNumericValue(num1.charAt(len1-i-1))+carry);
-                carry=0;
+                sum = Character.getNumericValue(num1.charAt(len1-i-1))+carry;
+                if (sum>9){
+                    result.append(Integer.toString(sum-10));
+                    carry=1;
+                }
+                else{
+                    result.append(Integer.toString(sum));
+                    carry=0;
+                }
+                result.append(sum);
             }
+            if (carry > 0) result.append(1);
             return result.reverse().toString();
         }
         // The subtract method accepts two natural numbers
@@ -81,9 +90,18 @@
                 }
             }
             for (int i=len2;i<len1;i++){
-                result.append(Character.getNumericValue(num1.charAt(len1-i-1))-carry);
-                carry=0;
+                sum = Character.getNumericValue(num1.charAt(len1-i-1))-carry;
+                if (diff<0){
+                    result.append(Integer.toString(sum+10));
+                    carry=1;
+                }
+                else{
+                    result.append(Integer.toString(sum));
+                    carry=0;
+                }
+                result.append(sum);
             }
+            if (carry > 0) result.append("-"); // this will never happen (i know u see this soelii)
             return result.reverse().toString();
         }
         public static String multiply ( String num1 , String num2 ) {
